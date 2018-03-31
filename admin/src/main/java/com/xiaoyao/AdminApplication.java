@@ -1,4 +1,4 @@
-package sys;
+package com.xiaoyao;
 
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.spring.annotation.MapperScan;
