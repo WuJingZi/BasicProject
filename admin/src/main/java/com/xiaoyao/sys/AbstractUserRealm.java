@@ -1,29 +1,19 @@
 package com.xiaoyao.sys;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import sys.Log;
 
-import com.xiaoyao.hy.User;
-import com.xiaoyao.hy.UserService;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class AbstractUserRealm extends AuthorizingRealm {
-
-    private static final Logger logger = LoggerFactory.getLogger(AbstractUserRealm.class);
 
     @Autowired
     private OperatorService operatorService;
@@ -56,7 +46,7 @@ public abstract class AbstractUserRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         authorizationInfo.addRoles(userRoles);
         authorizationInfo.addStringPermissions(userPermissions);
-        logger.info("###【获取角色成功】[SessionId] => {}", SecurityUtils.getSubject().getSession().getId());
+        Log.info(String.format("###【获取角色成功】[SessionId] =>%s",SecurityUtils.getSubject().getSession().getId()),this.getClass());
         return authorizationInfo;
     }
 
