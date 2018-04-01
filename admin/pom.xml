@@ -26,6 +26,12 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.xiaoyao</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
 
         <!-- pom.xml中添加支持web的模块 -->
         <dependency>
