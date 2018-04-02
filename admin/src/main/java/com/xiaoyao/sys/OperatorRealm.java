@@ -11,20 +11,18 @@ public class OperatorRealm extends AbstractUserRealm {
 	@Override
 	public UserRolesAndPermissions doGetGroupAuthorizationInfo(Operator operator) {
 		Set<String> userRoles = new HashSet<>();
-		userRoles.add("operator");
         Set<String> userPermissions = new HashSet<>();
+		userRoles.add("operator");
         userPermissions.add("operator:query");
-        //TODO 获取当前用户下拥有的所有角色列表,及权限
+        // 获取当前用户下拥有的所有角色列表,及权限
         return new UserRolesAndPermissions(userRoles, userPermissions);
 	}
 
 	@Override
 	public UserRolesAndPermissions doGetRoleAuthorizationInfo(Operator operator) {
 		Set<String> userRoles = new HashSet<>();
-		userRoles.add("operator");
         Set<String> userPermissions = new HashSet<>();
-        userPermissions.add("query");
-        //TODO 获取当前用户下拥有的所有角色列表,及权限
+        // 获取当前用户下拥有的所有角色列表,及权限
         return new UserRolesAndPermissions(userRoles, userPermissions);
 	}
 

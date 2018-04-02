@@ -92,8 +92,8 @@ public class SysController {
 	}
 
 
-	@RequestMapping("index")
-    @RequiresPermissions("operator:query")
+
+	@GetMapping("index")
     public String index(Model model){
 		List<User> list= userService.findAll();
 		model.addAttribute("list",list);
@@ -101,7 +101,7 @@ public class SysController {
 	}
 	
 	
-	@RequestMapping("main.html")
+	@GetMapping("main.html")
 	public String main(Model model){
 		List<User> list= userService.findAll();
 		model.addAttribute("list",list);
