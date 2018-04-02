@@ -47,8 +47,8 @@ public class ShiroConfiguration {
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
         filterChainDefinitionMap.put("/sys/login", "anon");//anon 可以理解为不拦截
         filterChainDefinitionMap.put("/hy/register", "anon");
-        filterChainDefinitionMap.put("/plugins/**", "anon");
-        filterChainDefinitionMap.put("/dists/img/*", "anon");
+//      可公开访问的静态资源
+        filterChainDefinitionMap.put("/pub/**", "anon");
         filterChainDefinitionMap.put("/**", "authc");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
