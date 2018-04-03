@@ -1,5 +1,6 @@
 package com.xiaoyao.sys;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -69,11 +70,19 @@ public class ShiroConfiguration {
     public DefaultWebSecurityManager  securityManager(OperatorRealm operatorRealm) {
         Log.info("注入Shiro的Web过滤器-->securityManager", ShiroFilterFactoryBean.class);
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        operatorRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         securityManager.setRealm(operatorRealm);
         //注入缓存管理器;
         securityManager.setCacheManager(ehCacheManager());//这个如果执行多次，也是同样的一个对象;
         return securityManager;
     }
+
+//    @Bean
+//    public OperatorRealm operatorRealm(){
+//        OperatorRealm operatorRealm=new OperatorRealm();
+//        operatorRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+//    }
+
 
     /**
      * Shiro生命周期处理器 * @return
@@ -99,6 +108,21 @@ public class ShiroConfiguration {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
+    }
+
+
+    /**
+     * 告诉shiro密码验证方式
+     * @return
+     */
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher(){
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用MD5算法;
+        hashedCredentialsMatcher.setHashIterations(1);//散列的次数，比如散列两次，相当于 md5(md5(""));
+
+        return hashedCredentialsMatcher;
     }
 
 
