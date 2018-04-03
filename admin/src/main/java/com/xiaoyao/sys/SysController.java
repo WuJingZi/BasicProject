@@ -2,6 +2,7 @@ package com.xiaoyao.sys;
 
 import com.xiaoyao.hy.User;
 import com.xiaoyao.hy.UserService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -43,7 +44,7 @@ public class SysController {
 		}
 		String loginName = operator.getSoperatorname();
 		Log.info(String.format("准备登陆用户 =>%s",loginName),this.getClass());
-		UsernamePasswordToken token = new UsernamePasswordToken(loginName,operator.getSpassword());
+		UsernamePasswordToken token = new UsernamePasswordToken(loginName, DigestUtils.md5Hex(operator.getSpassword()));
 		//获取当前的Subject
 		Subject currentUser = SecurityUtils.getSubject();
 		try {
