@@ -101,11 +101,5 @@ public class SysController {
 	}
 	
 	
-	@GetMapping("main.html")
-	public String main(Model model){
-		List<User> list= userService.findAll();
-		model.addAttribute("list",list);
-		return "sys/main";
-	}
-	
+
 }
