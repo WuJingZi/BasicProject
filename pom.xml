@@ -97,6 +97,7 @@
         <module>po</module>
         <module>service</module>
         <module>common</module>
+        <module>front</module>
     </modules>
 
 
